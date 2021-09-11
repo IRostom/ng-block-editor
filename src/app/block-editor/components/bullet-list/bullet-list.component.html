@@ -1,0 +1,12 @@
+<ul *ngIf="bullets" class="list-unstyled">
+  <li
+    *ngFor="let bullet of bullets; let i = index; trackBy: trackBullets"
+    [style.margin-left.px]="[30 * bullet.level]"
+  >
+    <div class="container-fluid p-0">
+      <div class="flex-grow-1">
+        <app-bullet [bullet]="bullet"></app-bullet>
+      </div>
+    </div>
+  </li>
+</ul>

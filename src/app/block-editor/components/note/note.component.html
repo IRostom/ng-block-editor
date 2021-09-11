@@ -1,0 +1,19 @@
+<div *ngIf="note$ | async as note" class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <app-bullet [bullet]="note.title"></app-bullet>
+    </div>
+  </div>
+  <div class="row h-100">
+    <div class="col">
+      <app-bullet-list [bullets]="note.bullets"></app-bullet-list>
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col">
+      <button type="button" mat-icon-button (click)="createNewBulletAtEnd()">
+        <mat-icon>add</mat-icon> List new bullet
+      </button>
+    </div>
+  </div> -->
+</div>
