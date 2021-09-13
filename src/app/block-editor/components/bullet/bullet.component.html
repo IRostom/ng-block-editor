@@ -1,10 +1,44 @@
-<div [formGroup]="form">
-  <textarea
-    #bullet
-    cdkTextareaAutosize
-    class="border-0"
-    formControlName="title"
-  ></textarea>
+<div [formGroup]="form" [ngSwitch]="bullet.type.name">
+  <!-- matInput -->
+  <div *ngSwitchCase="Type.TEXT">
+    <textarea
+      #bullet
+      cdkTextareaAutosize
+      class="border-0"
+      formControlName="textBulletField"
+    ></textarea>
+  </div>
+  <div *ngSwitchCase="Type.UNORDERED_LIST">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <!-- <mat-icon>home</mat-icon> -->
+      <div class="list-icon"></div>
+      <textarea
+        #bullet
+        cdkTextareaAutosize
+        class="border-0"
+        formControlName="textBulletField"
+      ></textarea>
+    </div>
+  </div>
+  <div *ngSwitchCase="Type.TODO_LIST">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-checkbox formControlName="todoBulletField"></mat-checkbox>
+      <textarea
+        #bullet
+        cdkTextareaAutosize
+        class="border-0"
+        formControlName="textBulletField"
+      ></textarea>
+    </div>
+  </div>
+  <div *ngSwitchDefault>
+    <textarea
+      #bullet
+      cdkTextareaAutosize
+      class="border-0 mat-h1"
+      formControlName="textBulletField"
+    ></textarea>
+  </div>
 </div>
 
 <!-- (keydown)="onKeydown($event)" -->

@@ -6,6 +6,11 @@ import { NoteComponent } from './components/note/note.component';
 import { ActionMenuComponent } from './components/action-menu/action-menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatListModule } from '@angular/material/list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
 
 const components = [
   BulletComponent,
@@ -16,7 +21,16 @@ const components = [
 
 @NgModule({
   declarations: [...components],
-  imports: [CommonModule, ReactiveFormsModule, TextFieldModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TextFieldModule,
+    MatListModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatCheckboxModule,
+    MatInputModule,
+  ],
   exports: [...components],
 })
 export class BlockEditorModule {}

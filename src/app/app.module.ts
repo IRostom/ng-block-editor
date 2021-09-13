@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlockEditorModule } from './block-editor/block-editor.module';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { BlockEditorModule } from './block-editor/block-editor.module';
     AppRoutingModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     BrowserAnimationsModule,
-    FlexLayoutModule,
     BlockEditorModule,
   ],
   providers: [],

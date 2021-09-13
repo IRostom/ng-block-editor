@@ -1,0 +1,10 @@
+app-bullet {
+  width: 100%;
+  // flex-grow: 1;
+}
+
+::ng-deep.mat-list-base .mat-list-item {
+  &.bullet-list-item {
+    height: auto;
+  }
+}

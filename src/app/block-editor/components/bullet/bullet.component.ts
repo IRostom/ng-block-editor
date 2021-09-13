@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Bullet } from '../../interfaces/note.interface';
+import { Bullet, SubType, Type } from '../../interfaces/note.interface';
 
 @Component({
   selector: 'app-bullet',
@@ -16,12 +16,23 @@ export class BulletComponent implements OnInit {
   form: FormGroup = {} as FormGroup;
   // title = new FormControl('');
 
+  public Type = Type;
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      title: this.bullet?.title ?? '',
-    });
+    switch (this.bullet?.type?.name) {
+      case Type.TEXT:
+      case Type.UNORDERED_LIST:
+        this.createTextField();
+        break;
+      case Type.TODO_LIST:
+        this.createTodoField();
+        break;
+      default:
+        this.createTextField();
+        break;
+    }
 
     // this.title.valueChanges
     //   .pipe(debounceTime(1000), distinctUntilChanged())
@@ -36,6 +47,20 @@ export class BulletComponent implements OnInit {
     //     }
     //     // console.log(value);
     //   });
+  }
+
+  createTextField() {
+    this.form = this.fb.group({
+      textBulletField: this.bullet?.title ?? '',
+    });
+  }
+
+  createTodoField() {
+    this.form = this.fb.group({
+      todoBulletField:
+        this.bullet?.type?.subType === SubType.TODO_LIST_CHECKED ? true : false,
+      textBulletField: this.bullet?.title ?? '',
+    });
   }
 
   // ngAfterViewInit() {

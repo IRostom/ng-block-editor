@@ -13,7 +13,7 @@ export interface Bullet {
 
 export interface BulletType {
   name: Type;
-  type: SubType | null;
+  subType: SubType | null;
 }
 
 export enum Type {
