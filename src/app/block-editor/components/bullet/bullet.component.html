@@ -1,6 +1,5 @@
 <div [formGroup]="form" [ngSwitch]="bullet.type.name">
-  <!-- matInput -->
-  <div *ngSwitchCase="Type.TEXT">
+  <div *ngSwitchCase="Type.TEXT" fxLayout="row" fxLayoutAlign="center center">
     <textarea
       #bullet
       cdkTextareaAutosize
@@ -9,8 +8,7 @@
     ></textarea>
   </div>
   <div *ngSwitchCase="Type.UNORDERED_LIST">
-    <div fxLayout="row" fxLayoutAlign="center center">
-      <!-- <mat-icon>home</mat-icon> -->
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
       <div class="list-icon"></div>
       <textarea
         #bullet
@@ -21,7 +19,7 @@
     </div>
   </div>
   <div *ngSwitchCase="Type.TODO_LIST">
-    <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
       <mat-checkbox formControlName="todoBulletField"></mat-checkbox>
       <textarea
         #bullet
