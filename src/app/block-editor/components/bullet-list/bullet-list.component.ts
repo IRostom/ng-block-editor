@@ -7,7 +7,7 @@ import { Bullet } from '../../interfaces/note.interface';
   styleUrls: ['./bullet-list.component.scss'],
 })
 export class BulletListComponent implements OnInit {
-  @Input() bullets: Array<Bullet> = [];
+  @Input() bullets: Array<Bullet> | undefined = [];
   // docs$: Observable<Doc[]>;
   constructor() {}
 

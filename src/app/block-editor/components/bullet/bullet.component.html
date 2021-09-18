@@ -1,37 +1,41 @@
-<div [formGroup]="form" [ngSwitch]="bullet.type.name">
+<div [formGroup]="form" [ngSwitch]="bullet.type">
   <div *ngSwitchCase="Type.TEXT" fxLayout="row" fxLayoutAlign="center center">
     <textarea
-      #bullet
+      #blt
       cdkTextareaAutosize
       class="border-0"
       formControlName="textBulletField"
     ></textarea>
   </div>
-  <div *ngSwitchCase="Type.UNORDERED_LIST">
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-      <div class="list-icon"></div>
+  <div *ngSwitchCase="Type.LIST" fxLayout="column">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+      [ngSwitch]="bullet.data.style"
+    >
+      <div *ngSwitchCase="List.UNORDERED" class="list list--icon"></div>
+      <div *ngSwitchCase="List.NUMBERED" class="list">
+        {{ bullet.data.listOrder }}.
+      </div>
+      <mat-checkbox
+        *ngSwitchCase="List.CHECK"
+        formControlName="todoBulletField"
+      ></mat-checkbox>
       <textarea
-        #bullet
+        #blt
         cdkTextareaAutosize
         class="border-0"
         formControlName="textBulletField"
       ></textarea>
     </div>
-  </div>
-  <div *ngSwitchCase="Type.TODO_LIST">
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-      <mat-checkbox formControlName="todoBulletField"></mat-checkbox>
-      <textarea
-        #bullet
-        cdkTextareaAutosize
-        class="border-0"
-        formControlName="textBulletField"
-      ></textarea>
+    <div *ngIf="!!bullet.data?.items">
+      <app-bullet-list [bullets]="bullet?.data?.items"></app-bullet-list>
     </div>
   </div>
   <div *ngSwitchDefault>
     <textarea
-      #bullet
+      #blt
       cdkTextareaAutosize
       class="border-0 mat-h1"
       formControlName="textBulletField"

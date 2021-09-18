@@ -5,30 +5,38 @@ export interface Note {
 
 export interface Bullet {
   id?: number;
-  title: string;
+  type: Type;
   order: number;
-  level: number;
-  type: BulletType;
+  data: Data;
+  // title: string;
+  // level: number;
 }
 
-export interface BulletType {
-  name: Type;
-  subType: SubType | null;
+export interface Data {
+  text: string; // bullet content
+  level?: number; // for headers
+  // subtype: SubType;
+  style?: List; // for lists
+  listOrder?: number; // for numbered list
+  items?: Array<Bullet>;
+  checked?: boolean; // for checklist
 }
+
+// export interface BulletType {
+//   name: Type;
+//   subType: SubType | null;
+// }
 
 export enum Type {
   TEXT,
-  NUMBERED_LIST,
-  UNORDERED_LIST,
-  TODO_LIST,
+  // CHECK_LIST,
+  LIST,
   HEADER,
   NOTE_TITLE,
 }
 
-export enum SubType {
-  TODO_LIST_CHECKED,
-  TODO_LIST_UNCHECKED,
-  HEADER_H1,
-  HEADER_H2,
-  HEADER_H3,
+export enum List {
+  NUMBERED,
+  UNORDERED,
+  CHECK,
 }

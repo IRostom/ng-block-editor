@@ -1,36 +1,93 @@
-import { Note, SubType, Type } from '../../interfaces/note.interface';
+import { List, Note, Type } from '../../interfaces/note.interface';
 
 export const FIRST_NOTE: Note = {
   title: {
-    title: 'First Note',
     order: 0,
-    level: 0,
-    type: { name: Type.NOTE_TITLE, subType: null },
+    type: Type.NOTE_TITLE,
+    data: {
+      text: 'First Note',
+    },
   },
   bullets: [
     {
-      title: 'Hello, this is the first header entry in the note',
       order: 1,
-      level: 1,
-      type: { name: Type.TEXT, subType: null },
+      type: Type.TEXT,
+      data: {
+        text: 'Hello, this is the first text entry in the note',
+      },
     },
     {
-      title: 'Hello, this is the first text entry in the note',
       order: 1,
-      level: 1,
-      type: { name: Type.UNORDERED_LIST, subType: null },
+      type: Type.LIST,
+      data: {
+        text: 'Hello, this is an ordered list item',
+        style: List.UNORDERED,
+        items: [
+          {
+            order: 1,
+            type: Type.LIST,
+            data: {
+              text: 'Hello, this is an indented ordered list item',
+              style: List.UNORDERED,
+              items: [
+                {
+                  order: 1,
+                  type: Type.LIST,
+                  data: {
+                    text: 'Hello, this is an indented ordered list item',
+                    style: List.UNORDERED,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
     {
-      title: 'Hello, this is the first unordered list in the note',
       order: 1,
-      level: 1,
-      type: { name: Type.TODO_LIST, subType: SubType.TODO_LIST_UNCHECKED },
+      type: Type.LIST,
+      data: {
+        text: 'Hello, this is a numbered list item',
+        style: List.NUMBERED,
+        listOrder: 1,
+      },
     },
     {
-      title: 'Hello, this is the first entry in the note',
       order: 1,
-      level: 1,
-      type: { name: Type.TODO_LIST, subType: SubType.TODO_LIST_CHECKED },
+      type: Type.LIST,
+      data: {
+        text: 'Hello, this is a numbered list item',
+        style: List.NUMBERED,
+        listOrder: 2,
+      },
+    },
+    {
+      order: 1,
+      type: Type.LIST,
+      data: {
+        text: 'Hello, this is a numbered list item',
+        style: List.NUMBERED,
+        listOrder: 3,
+      },
+    },
+    {
+      order: 1,
+      type: Type.LIST,
+      data: {
+        text: 'Hello, this is a check list item',
+        checked: true,
+        style: List.CHECK,
+      },
+    },
+    {
+      order: 1,
+      type: Type.LIST,
+      data: {
+        text: 'Hello, this is a check list item',
+        checked: false,
+        style: List.CHECK,
+      },
     },
   ],
 };

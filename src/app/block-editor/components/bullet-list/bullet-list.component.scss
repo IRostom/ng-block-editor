@@ -3,8 +3,15 @@ app-bullet {
   // flex-grow: 1;
 }
 
-::ng-deep.mat-list-base .mat-list-item {
-  &.bullet-list-item {
-    height: auto;
+::ng-deep.mat-list-base {
+  padding: 0;
+  .mat-list-item {
+    &.bullet-list-item {
+      height: auto;
+      
+      .mat-list-item-content{
+        padding: 0 26px;
+      }
+    }
   }
 }

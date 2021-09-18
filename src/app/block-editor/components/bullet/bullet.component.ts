@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Bullet, SubType, Type } from '../../interfaces/note.interface';
+import { Bullet, List, Type } from '../../interfaces/note.interface';
 
 @Component({
   selector: 'app-bullet',
@@ -17,17 +17,24 @@ export class BulletComponent implements OnInit {
   // title = new FormControl('');
 
   public Type = Type;
+  public List = List;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    switch (this.bullet?.type?.name) {
+    switch (this.bullet?.type) {
       case Type.TEXT:
-      case Type.UNORDERED_LIST:
         this.createTextField();
         break;
-      case Type.TODO_LIST:
-        this.createTodoField();
+      case Type.LIST:
+        switch (this.bullet.data.style) {
+          case List.CHECK:
+            this.createTodoField();
+            break;
+          default:
+            this.createTextField();
+            break;
+        }
         break;
       default:
         this.createTextField();
@@ -51,15 +58,14 @@ export class BulletComponent implements OnInit {
 
   createTextField() {
     this.form = this.fb.group({
-      textBulletField: this.bullet?.title ?? '',
+      textBulletField: this.bullet?.data?.text ?? '',
     });
   }
 
   createTodoField() {
     this.form = this.fb.group({
-      todoBulletField:
-        this.bullet?.type?.subType === SubType.TODO_LIST_CHECKED ? true : false,
-      textBulletField: this.bullet?.title ?? '',
+      todoBulletField: !!this.bullet?.data?.checked,
+      textBulletField: this.bullet?.data.text ?? '',
     });
   }
 
